@@ -334,10 +334,10 @@ Resources:
         configSets:
           deploy_webserver:
             - install_logs
-            - install_codedeploy
             - install_webserver
             - start_webserver
             - add_crontab
+            - install_codedeploy
         install_logs:
           files:
             /etc/awslogs/awslogs.conf:
@@ -403,25 +403,6 @@ Resources:
               command: ./download_aws_ini.sh
               cwd: /tmp
               ignoreErrors: true
-        install_codedeploy:
-          files:
-            /tmp/install_codedeploy.sh:
-              content:
-                !Sub |
-                  #!/bin/bash -xe
-                  dnf install -y ruby
-                  cd /home/ec2-user
-                  wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
-                  chmod +x ./install
-                  ./install auto
-              mode: 000500
-              owner: root
-              group: root
-          commands:
-            install_codedeploy:
-              command: ./install_codedeploy.sh
-              cwd: /tmp
-              ignoreErrors: false              
         install_webserver:
           files:
             /tmp/status.txt:
@@ -433,6 +414,7 @@ Resources:
             /tmp/create_site_conf.sh:
               content: !Sub |
                 #!/bin/bash -xe
+                
                 dnf install -y php8.1 php-gd php-soap php-intl php-mbstring php-xml php-opcache php-fpm php-pgsql php-mysqlnd
 
                 # Enable crontab on Amazon Linux 2023
@@ -529,6 +511,7 @@ Resources:
                 fi
 
                 cp /tmp/status.txt /var/www/moodle/html/status.txt
+                
               mode: 000500
               owner: root
               group: root
@@ -557,6 +540,25 @@ Resources:
               command: ./add_crontab.sh
               cwd: /tmp
               ignoreErrors: false
+        install_codedeploy:
+          files:
+            /tmp/install_codedeploy.sh:
+              content:
+                !Sub |
+                  #!/bin/bash -xe
+                  dnf install -y ruby
+                  cd /home/ec2-user
+                  wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
+                  chmod +x ./install
+                  ./install auto
+              mode: 000500
+              owner: root
+              group: root
+          commands:
+            install_codedeploy:
+              command: ./install_codedeploy.sh
+              cwd: /tmp
+              ignoreErrors: false          
     Properties:
       LaunchTemplateData:
         BlockDeviceMappings:
