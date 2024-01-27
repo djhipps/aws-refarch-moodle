@@ -427,6 +427,9 @@ Resources:
                 pecl install zip
                 echo "extension=zip.so;" > /etc/php.d/50-zip.ini
 
+                # Install ldap.
+                yum install -y php8.1-ldap
+
                 # Install Sodium
                 dnf install -y gcc
                 wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz
@@ -437,6 +440,24 @@ Resources:
                 make install
                 pecl install -f libsodium
                 echo "extension=sodium.so;" > /etc/php.d/50-sodium.ini
+
+                # Install packages for Redis.
+                echo "Installing Redis..."
+                dnf install -q -y php-cli
+                pear update-channels
+                pecl update-channels 
+                /usr/bin/yes 'no' | pecl install igbinary
+                echo 'extension=igbinary.so' > /etc/php.d/30-igbinary.ini
+                /usr/bin/yes 'no' | pecl install msgpack
+                echo 'extension=msgpack.so' > /etc/php.d/30-msgpack.ini
+                dnf install -q -y libzstd-devel
+                /usr/bin/yes 'no' | pecl install zstd
+                echo 'extension=zstd.so' > /etc/php.d/40-zstd.ini
+                /usr/bin/yes 'no' | pecl install --configureoptions 'enable-lzf-better-compression="no"' lzf
+                echo 'extension=lzf.so' > /etc/php.d/40-lzf.ini
+                dnf install -q -y redis6-devel lz4-devel
+                /usr/bin/yes 'no' | pecl install --configureoptions 'enable-redis-igbinary="yes" enable-redis-lzf="yes" enable-redis-zstd="yes" enable-redis-msgpack="yes" enable-redis-lz4="yes" with-liblz4="yes"' redis
+                echo 'extension=redis.so' > /etc/php.d/41-redis.ini
 
                 # Adjust base php.ini
                 sed -i 's/memory_limit =.*/memory_limit = 4096M/' /etc/php.ini
