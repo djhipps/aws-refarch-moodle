@@ -532,6 +532,7 @@ Resources:
                 fi
 
                 cp /tmp/status.txt /var/www/moodle/html/status.txt
+                chown apache:apache /var/www/moodle/html/status.txt
                 
               mode: 000500
               owner: root
