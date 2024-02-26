@@ -240,7 +240,7 @@ Resources:
             Action:
               - cloudfront:ListDistributions
             Resource:
-              - 'arn:aws:cloudfront:*:*:*'
+              - '*'
             
   Logs: 
       Type: AWS::Logs::LogGroup
