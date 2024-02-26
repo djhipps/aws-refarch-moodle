@@ -236,6 +236,11 @@ Resources:
               - cloudformation:DescribeStackResource
             Resource:
               - '*'
+          - Effect: Allow
+            Action:
+              - cloudfront:ListDistributions
+            Resource:
+              - 'arn:aws:cloudfront:*:*:*'
             
   Logs: 
       Type: AWS::Logs::LogGroup
