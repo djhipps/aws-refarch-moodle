@@ -470,7 +470,7 @@ Resources:
                 sed -i 's/upload_max_filesize =.*/upload_max_filesize = 200M/' /etc/php.ini
                 sed -i 's/max_execution_time =.*/max_execution_time = 300/' /etc/php.ini
                 sed -i 's/max_input_time =.*/max_input_time = 300/' /etc/php.ini
-                sed -i 's/post_max_size =.*/post_max_size = 1200/' /etc/php.ini
+                sed -i 's/post_max_size =.*/post_max_size = 200M/' /etc/php.ini
 
                 # Create Apache config
                 if [ ! -f /etc/httpd/conf.d/moodle.conf ]; then                    
@@ -563,6 +563,7 @@ Resources:
               content: !Sub |
                   #!/bin/sh -xe
                   echo "* * * * * apache /usr/bin/php /var/www/moodle/html/admin/cli/cron.php" >> /etc/cron.d/moodle
+                  echo "30 1 * * * root /bin/bash /var/www/moodle/data/scripts/sms-batch-job.sh" >> /etc/cron.d/moodle
               mode: 000500
               owner: root
               group: root
