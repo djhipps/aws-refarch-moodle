@@ -485,11 +485,11 @@ Resources:
                 fi
 
                 # Create hidden opcache directory locally & change owner to apache
-                if [ ! -d /var/www/.opcache ]; then                    
-                    mkdir -p /var/www/.opcache
+                if [ ! -d /var/www/moodle/temp/.opcache ]; then                    
+                    mkdir -p /var/www/moodle/temp/.opcache
                 fi
                 # Ensure opcache is enabled and add settings recomended by moodle at https://docs.moodle.org/34/en/OPcache
-                sed -i 's/;opcache.file_cache=.*/opcache.file_cache=\/var\/www\/.opcache/' /etc/php.d/10-opcache.ini
+                sed -i 's/;opcache.file_cache=.*/opcache.file_cache=\/var\/www\/moodle\/temp\/.opcache/' /etc/php.d/10-opcache.ini
                 sed -i 's/opcache.memory_consumption=.*/opcache.memory_consumption=512/' /etc/php.d/10-opcache.ini
                 sed -i 's/opcache.max_accelerated_files=.*/opcache.max_accelerated_files=8000/' /etc/php.d/10-opcache.ini
                 sed -i 's/;opcache.revalidate_freq=.*/opcache.revalidate_freq=300/' /etc/php.d/10-opcache.ini
@@ -536,8 +536,8 @@ Resources:
                   sudo umount -f /$EnvElasticFileSystem
 
                   mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $EnvElasticFileSystem.efs.${AWS::Region}.amazonaws.com:/data /var/www/moodle/data
-                  #mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $EnvElasticFileSystem.efs.${AWS::Region}.amazonaws.com:/cache /var/www/moodle/cache
-                  #mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $EnvElasticFileSystem.efs.${AWS::Region}.amazonaws.com:/temp /var/www/moodle/temp
+                  mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $EnvElasticFileSystem.efs.${AWS::Region}.amazonaws.com:/cache /var/www/moodle/cache
+                  mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $EnvElasticFileSystem.efs.${AWS::Region}.amazonaws.com:/temp /var/www/moodle/temp
                 fi
 
                 cp /tmp/status.txt /var/www/moodle/html/status.txt
