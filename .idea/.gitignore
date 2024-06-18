@@ -6,3 +6,15 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# DH Added.
+/.patches/
+/.idea/
+.phpstorm.*
+.DS_Store
+/.settings/
+/.project
+/.buildpath
+/.cache
+.phpunit.result.cache
+phpunit.xml
