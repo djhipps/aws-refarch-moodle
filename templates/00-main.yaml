@@ -84,7 +84,7 @@ Metadata:
       CloudFrontAcmCertificate:
         default: CloudFront Certificate ARN
       DatabaseCmk:
-        default: AWS KMS CMK for RDS 
+        default: AWS KMS CMK for RDS
       DatabaseEncryptedBoolean:
         default: Encrypted DB Cluster
       DatabaseUseServerless:
@@ -102,7 +102,7 @@ Metadata:
       SharedStorageEncryptionBoolean:
         default: Shared File Storage Encrypted?
       SharedStorageEncryptionCmk:
-        default: (Optional) Shared File Storage Encryption Key ARN (AWS KMS CMK) 
+        default: (Optional) Shared File Storage Encryption Key ARN (AWS KMS CMK)
       EC2KeyName:
         default: EC2 Key Pair
       PublicAlbAcmCertificate:
@@ -163,99 +163,99 @@ Parameters:
   DeploymentLocation:
     Description: Location to deploy from (S3 URL), Keep it as is unless you created your own S3 bucket
     Type: String
-    Default: https://s3.amazonaws.com/aws-refarch/moodle/al2023/templates
+    Default: https://s3.eu-west-2.amazonaws.com/lsst.assets/templates
   BastionInstanceType:
     AllowedValues:
-      - t3.nano 
-      - t3.micro 
-      - t3.small 
-      - t3.medium 
-      - t3.large 
-      - t3.xlarge 
+      - t3.nano
+      - t3.micro
+      - t3.small
+      - t3.medium
+      - t3.large
+      - t3.xlarge
       - t3.2xlarge
-      - m5.large 
-      - m5.xlarge 
-      - m5.2xlarge 
-      - m5.4xlarge 
-      - m5.8xlarge 
+      - m5.large
+      - m5.xlarge
+      - m5.2xlarge
+      - m5.4xlarge
+      - m5.8xlarge
       - m5.12xlarge
       - m5.16xlarge
-      - m5.24xlarge      
-      - c5.large 
-      - c5.xlarge 
-      - c5.2xlarge 
-      - c5.4xlarge 
-      - c5.9xlarge 
+      - m5.24xlarge
+      - c5.large
+      - c5.xlarge
+      - c5.2xlarge
+      - c5.4xlarge
+      - c5.9xlarge
       - c5.12xlarge
-      - c5.18xlarge  
-      - c5.24xlarge      
-      - r5.large 
-      - r5.xlarge 
-      - r5.2xlarge 
-      - r5.4xlarge 
-      - r5.8xlarge 
+      - c5.18xlarge
+      - c5.24xlarge
+      - r5.large
+      - r5.xlarge
+      - r5.2xlarge
+      - r5.4xlarge
+      - r5.8xlarge
       - r5.12xlarge
       - r5.16xlarge
       - r5.24xlarge
-      - t3a.nano 
-      - t3a.micro 
-      - t3a.small 
-      - t3a.medium 
-      - t3a.large 
-      - t3a.xlarge 
+      - t3a.nano
+      - t3a.micro
+      - t3a.small
+      - t3a.medium
+      - t3a.large
+      - t3a.xlarge
       - t3a.2xlarge
-      - m5a.large 
-      - m5a.xlarge 
-      - m5a.2xlarge 
-      - m5a.4xlarge 
-      - m5a.8xlarge 
+      - m5a.large
+      - m5a.xlarge
+      - m5a.2xlarge
+      - m5a.4xlarge
+      - m5a.8xlarge
       - m5a.12xlarge
       - m5a.16xlarge
-      - m5a.24xlarge      
-      - c5a.large 
-      - c5a.xlarge 
-      - c5a.2xlarge 
-      - c5a.4xlarge 
-      - c5a.9xlarge 
+      - m5a.24xlarge
+      - c5a.large
+      - c5a.xlarge
+      - c5a.2xlarge
+      - c5a.4xlarge
+      - c5a.9xlarge
       - c5a.12xlarge
-      - c5a.18xlarge  
-      - c5a.24xlarge      
-      - r5a.large 
-      - r5a.xlarge 
-      - r5a.2xlarge 
-      - r5a.4xlarge 
-      - r5a.8xlarge 
+      - c5a.18xlarge
+      - c5a.24xlarge
+      - r5a.large
+      - r5a.xlarge
+      - r5a.2xlarge
+      - r5a.4xlarge
+      - r5a.8xlarge
       - r5a.12xlarge
       - r5a.16xlarge
       - r5a.24xlarge
-      - t4g.nano 
-      - t4g.micro 
-      - t4g.small 
-      - t4g.medium 
-      - t4g.large 
-      - t4g.xlarge 
+      - t4g.nano
+      - t4g.micro
+      - t4g.small
+      - t4g.medium
+      - t4g.large
+      - t4g.xlarge
       - t4g.2xlarge
-      - m6g.large 
-      - m6g.xlarge 
-      - m6g.2xlarge 
-      - m6g.4xlarge 
-      - m6g.8xlarge 
+      - m6g.large
+      - m6g.xlarge
+      - m6g.2xlarge
+      - m6g.4xlarge
+      - m6g.8xlarge
       - m6g.12xlarge
       - m6g.16xlarge
-      - m6g.24xlarge      
-      - c6g.large 
-      - c6g.xlarge 
-      - c6g.2xlarge 
-      - c6g.4xlarge 
-      - c6g.9xlarge 
+      - m6g.24xlarge
+      - c6g.large
+      - c6g.xlarge
+      - c6g.2xlarge
+      - c6g.4xlarge
+      - c6g.9xlarge
       - c6g.12xlarge
-      - c6g.18xlarge  
-      - c6g.24xlarge      
-      - r6g.large 
-      - r6g.xlarge 
-      - r6g.2xlarge 
-      - r6g.4xlarge 
-      - r6g.8xlarge 
+      - c6g.18xlarge
+      - c6g.24xlarge
+      - r6g.large
+      - r6g.xlarge
+      - r6g.2xlarge
+      - r6g.4xlarge
+      - r6g.8xlarge
       - r6g.12xlarge
       - r6g.16xlarge
       - r6g.24xlarge
@@ -377,13 +377,13 @@ Parameters:
     ConstraintDescription: Must be an existing ARN for an AWS KMS CMK.
     Description: '[ Optional ] The AWS KMS customer-managed CMK ARN to encrypt & decrypt the Shared file storage.'
     Type: String
- 
+
   CacheEngineType:
     AllowedValues:
       - Redis
       - Memcached
     Default: Memcached
-    Description: Indicates whether to use ElastiCache Memcached or Redis. 
+    Description: Indicates whether to use ElastiCache Memcached or Redis.
     Type: String
   UseSessionCacheBoolean:
     AllowedValues:
@@ -466,96 +466,96 @@ Parameters:
     Type: String
   WebInstanceType:
     AllowedValues:
-      - t3.nano 
-      - t3.micro 
-      - t3.small 
-      - t3.medium 
-      - t3.large 
-      - t3.xlarge 
+      - t3.nano
+      - t3.micro
+      - t3.small
+      - t3.medium
+      - t3.large
+      - t3.xlarge
       - t3.2xlarge
-      - m5.large 
-      - m5.xlarge 
-      - m5.2xlarge 
-      - m5.4xlarge 
-      - m5.8xlarge 
+      - m5.large
+      - m5.xlarge
+      - m5.2xlarge
+      - m5.4xlarge
+      - m5.8xlarge
       - m5.12xlarge
       - m5.16xlarge
-      - m5.24xlarge      
-      - c5.large 
-      - c5.xlarge 
-      - c5.2xlarge 
-      - c5.4xlarge 
-      - c5.9xlarge 
+      - m5.24xlarge
+      - c5.large
+      - c5.xlarge
+      - c5.2xlarge
+      - c5.4xlarge
+      - c5.9xlarge
       - c5.12xlarge
-      - c5.18xlarge  
-      - c5.24xlarge      
-      - r5.large 
-      - r5.xlarge 
-      - r5.2xlarge 
-      - r5.4xlarge 
-      - r5.8xlarge 
+      - c5.18xlarge
+      - c5.24xlarge
+      - r5.large
+      - r5.xlarge
+      - r5.2xlarge
+      - r5.4xlarge
+      - r5.8xlarge
       - r5.12xlarge
       - r5.16xlarge
       - r5.24xlarge
-      - t3a.nano 
-      - t3a.micro 
-      - t3a.small 
-      - t3a.medium 
-      - t3a.large 
-      - t3a.xlarge 
+      - t3a.nano
+      - t3a.micro
+      - t3a.small
+      - t3a.medium
+      - t3a.large
+      - t3a.xlarge
       - t3a.2xlarge
-      - m5a.large 
-      - m5a.xlarge 
-      - m5a.2xlarge 
-      - m5a.4xlarge 
-      - m5a.8xlarge 
+      - m5a.large
+      - m5a.xlarge
+      - m5a.2xlarge
+      - m5a.4xlarge
+      - m5a.8xlarge
       - m5a.12xlarge
       - m5a.16xlarge
-      - m5a.24xlarge      
-      - c5a.large 
-      - c5a.xlarge 
-      - c5a.2xlarge 
-      - c5a.4xlarge 
-      - c5a.9xlarge 
+      - m5a.24xlarge
+      - c5a.large
+      - c5a.xlarge
+      - c5a.2xlarge
+      - c5a.4xlarge
+      - c5a.9xlarge
       - c5a.12xlarge
-      - c5a.18xlarge  
-      - c5a.24xlarge      
-      - r5a.large 
-      - r5a.xlarge 
-      - r5a.2xlarge 
-      - r5a.4xlarge 
-      - r5a.8xlarge 
+      - c5a.18xlarge
+      - c5a.24xlarge
+      - r5a.large
+      - r5a.xlarge
+      - r5a.2xlarge
+      - r5a.4xlarge
+      - r5a.8xlarge
       - r5a.12xlarge
       - r5a.16xlarge
       - r5a.24xlarge
-      - t4g.nano 
-      - t4g.micro 
-      - t4g.small 
-      - t4g.medium 
-      - t4g.large 
-      - t4g.xlarge 
+      - t4g.nano
+      - t4g.micro
+      - t4g.small
+      - t4g.medium
+      - t4g.large
+      - t4g.xlarge
       - t4g.2xlarge
-      - m6g.large 
-      - m6g.xlarge 
-      - m6g.2xlarge 
-      - m6g.4xlarge 
-      - m6g.8xlarge 
+      - m6g.large
+      - m6g.xlarge
+      - m6g.2xlarge
+      - m6g.4xlarge
+      - m6g.8xlarge
       - m6g.12xlarge
       - m6g.16xlarge
-      - m6g.24xlarge      
-      - c6g.large 
-      - c6g.xlarge 
-      - c6g.2xlarge 
-      - c6g.4xlarge 
-      - c6g.9xlarge 
+      - m6g.24xlarge
+      - c6g.large
+      - c6g.xlarge
+      - c6g.2xlarge
+      - c6g.4xlarge
+      - c6g.9xlarge
       - c6g.12xlarge
-      - c6g.18xlarge  
-      - c6g.24xlarge      
-      - r6g.large 
-      - r6g.xlarge 
-      - r6g.2xlarge 
-      - r6g.4xlarge 
-      - r6g.8xlarge 
+      - c6g.18xlarge
+      - c6g.24xlarge
+      - r6g.large
+      - r6g.xlarge
+      - r6g.2xlarge
+      - r6g.4xlarge
+      - r6g.8xlarge
       - r6g.12xlarge
       - r6g.16xlarge
       - r6g.24xlarge
@@ -662,14 +662,14 @@ Parameters:
     Default: hello@yourdomain.com
 
 Conditions:
-  DeployWithoutSessionCache: 
+  DeployWithoutSessionCache:
     !Equals [ false, !Ref UseSessionCacheBoolean ]
-  DeployWithSessionCache: 
+  DeployWithSessionCache:
     !Equals [ true, !Ref UseSessionCacheBoolean ]
-  DeployApplicationCache: 
+  DeployApplicationCache:
     !Equals [ true, !Ref UseApplicationCacheBoolean ]
-  DeployRoute53: 
-    !And [ 
+  DeployRoute53:
+    !And [
       !Not [!Equals ['', !Ref DomainName ] ],
       !Not [ !Equals ['', !Ref HostedZoneName ] ]
     ]
@@ -686,20 +686,20 @@ Conditions:
         !Equals ['', !Ref CloudFrontAcmCertificate ]  #no SSL certificate
       ]
     ]
-  DeployCloudFront: 
+  DeployCloudFront:
     !Or [
       !And [ #Domain Name with CloudFront but no SSL certificate will treat as CloudFront domain name only
         !Not [!Equals ['', !Ref DomainName ] ],
         !Equals [ true, !Ref UseCloudFrontBoolean ],
         !Not [ !Equals ['', !Ref CloudFrontAcmCertificate ] ]
       ],
-      !And [ 
+      !And [
         !Equals ['', !Ref DomainName ],
         !Equals [ true, !Ref UseCloudFrontBoolean ]
       ]
    ]
   DeployWithBastionHost:
-    !Equals [true, !Ref NeedBastionHost ] 
+    !Equals [true, !Ref NeedBastionHost ]
   SharedStorageEFS:
     !Equals ['EFS', 'EFS' ]
   DeployUsingRDSServerless:
@@ -735,7 +735,7 @@ Conditions:
 
 Resources:
   #Made it to fail the CloudformationDeployment due to Error choices.
-  SomeErrorInCloudFormationParamCombinationCheckErrorChoices: 
+  SomeErrorInCloudFormationParamCombinationCheckErrorChoices:
     Condition: ErrorChoices
     Type: AWS::SSM::Parameter
     Properties:
@@ -752,7 +752,7 @@ Resources:
         GenerateStringKey: 'password'
         PasswordLength: 16
         ExcludeCharacters: '"@/\'
-  
+
   IsMoodleSetupCompletedParam:
     Type: AWS::SSM::Parameter
     Properties:
@@ -900,7 +900,7 @@ Resources:
           !Ref NumberOfAZs
         ProjectName:
           !Sub '${AWS::StackName}'
-      TemplateURL: !Sub '${DeploymentLocation}/03-rdsserverless.yaml'      
+      TemplateURL: !Sub '${DeploymentLocation}/03-rdsserverless.yaml'
 
   sharedEFS:
     Condition: SharedStorageEFS
@@ -915,13 +915,13 @@ Resources:
         SecurityGroup:
          !GetAtt [ securitygroups, Outputs.EfsSecurityGroup ]
         NumberOfSubnets:
-          !Ref NumberOfAZs  
+          !Ref NumberOfAZs
         Subnet:
           !GetAtt [ vpc, Outputs.DataSubnet ]
         ProjectName:
           !Sub '${AWS::StackName}'
       TemplateURL: !Sub '${DeploymentLocation}/03-efsfilesystem.yaml'
-  
+
   pipelineHelper:
     DependsOn: securitygroups
     Type: AWS::CloudFormation::Stack
@@ -943,9 +943,9 @@ Resources:
           !Ref MoodleLocale
         ProjectName:
           !Sub '${AWS::StackName}'
-        WebAsgMax: 
+        WebAsgMax:
           !Ref WebAsgMax
-        WebAsgMin: 
+        WebAsgMin:
           !Ref WebAsgMin
       TemplateURL: !Sub '${DeploymentLocation}/03-pipelinehelper.yaml'
 
@@ -980,7 +980,7 @@ Resources:
         CacheUsageType: 'application'
         Subnet:
           !GetAtt [ vpc, Outputs.DataSubnet ]
-        ElastiCacheClusterName: 
+        ElastiCacheClusterName:
           !Sub '${AWS::StackName}application'
         ElastiCacheNodeType:
           !Ref ApplicationCacheNodeType
@@ -1023,9 +1023,9 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       Parameters:
-        CodeCommitRepoName: 
-          !GetAtt [ pipelineHelper, Outputs.MoodleRepoName ]          
-        CodeCommitRepoArn: 
+        CodeCommitRepoName:
+          !GetAtt [ pipelineHelper, Outputs.MoodleRepoName ]
+        CodeCommitRepoArn:
           !GetAtt [ pipelineHelper, Outputs.MoodleRepoArn ]
         BranchName: 'main'
         AppAutoScalingGroupName:
@@ -1046,9 +1046,9 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       Parameters:
-        CodeCommitRepoName: 
-          !GetAtt [ pipelineHelper, Outputs.MoodleRepoName ]          
-        CodeCommitRepoArn: 
+        CodeCommitRepoName:
+          !GetAtt [ pipelineHelper, Outputs.MoodleRepoName ]
+        CodeCommitRepoArn:
           !GetAtt [ pipelineHelper, Outputs.MoodleRepoArn ]
         BranchName: 'main'
         AppAutoScalingGroupName:
@@ -1065,7 +1065,7 @@ Resources:
 
   cloudfront:
     Condition: DeployCloudFront
-    DependsOn: publicalb    
+    DependsOn: publicalb
     Type: AWS::CloudFormation::Stack
     Properties:
       Parameters:
@@ -1103,7 +1103,7 @@ Resources:
       Type: String
       Value: !Join [ '', [ !If [ NeedSSL, 'https://','http://'] ,!GetAtt [ publicalb, Outputs.PublicAlbDnsName ] ] ]
       Description: SSM Parameter for Moodle Public DNS URL
-  
+
   route53:
     Condition: DeployRoute53
     DependsOn: publicalb
@@ -1121,38 +1121,38 @@ Resources:
       TemplateURL: !Sub '${DeploymentLocation}/05-route53.yaml'
 
 Outputs:
-  MoodleDomainName: 
+  MoodleDomainName:
     Description: Moodle URL
     Value:
       !If [ CustomDomainName,
             !Join [ '', [ !If [ NeedSSL, 'https://','http://'] , !Ref DomainName ] ],
-            !If [ DeployCloudFront, 
+            !If [ DeployCloudFront,
               !Join [ '', [ !If [ NeedSSL, 'https://','http://'] , !GetAtt [ cloudfront, Outputs.DnsName ] ] ],
               !Join [ '', [ !If [ NeedSSL, 'https://','http://'] , !GetAtt [ publicalb, Outputs.PublicAlbDnsName ] ] ]
             ]
           ]
 
-  DnsName: 
+  DnsName:
     Description: AWS-generated Moodle DNS Name (use this value to configure your custom DNS CNAME, if needed)
     Value:
-      !If [ DeployCloudFront, 
-              !GetAtt [ cloudfront, Outputs.DnsName ], 
+      !If [ DeployCloudFront,
+              !GetAtt [ cloudfront, Outputs.DnsName ],
               !GetAtt [ publicalb, Outputs.PublicAlbDnsName ] ]
-      
+
   IsMoodleSetupCompleted:
     Description: Once Moodle installation is completed, change this parameter value to 'Yes' and run pipeline
-    Value: !Join [ '', [ 'https://',!Ref "AWS::Region", '.console.aws.amazon.com/systems-manager/parameters', 
+    Value: !Join [ '', [ 'https://',!Ref "AWS::Region", '.console.aws.amazon.com/systems-manager/parameters',
                   !Ref IsMoodleSetupCompletedParam, '/description?region=',!Ref "AWS::Region" ] ]
-  
+
   MoodleGitRepo:
     Description: CodeCommit git repository having Moodle source code
-    Value: 
+    Value:
       !Join [ '', [ 'https://',!Ref "AWS::Region", '.console.aws.amazon.com/codesuite/codecommit/repositories/',
               !Ref AWS::StackName, '-Repo/browse?region=',!Ref "AWS::Region" ] ]
-    
+
   MoodleCodePipeline:
     Description: Moodle Code pipeline allows you to deploy your changes
-    Value: 
+    Value:
       !Join [ '', [ 'https://',!Ref "AWS::Region", '.console.aws.amazon.com/codesuite/codepipeline/pipelines/',
               !Ref AWS::StackName, '-Pipeline/view?region=',!Ref "AWS::Region" ] ]
 
