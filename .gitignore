@@ -1,1 +1,13 @@
 .DS_Store
+
+# DH Added.
+/.patches/
+/.idea/
+.phpstorm.*
+.DS_Store
+/.settings/
+/.project
+/.buildpath
+/.cache
+.phpunit.result.cache
+phpunit.xml
