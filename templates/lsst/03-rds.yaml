@@ -25,9 +25,9 @@ Metadata:
       DatabaseEncryptedBoolean:
         default: Encrypted DB Cluster
       DatabaseCmk:
-        default: AWS KMS Customer Master Key (CMK) to encrypt DB 
+        default: AWS KMS Customer Master Key (CMK) to encrypt DB
       DatabaseInstanceType:
-        default: DB Instance Class 
+        default: DB Instance Class
       # DatabaseMasterUsername:
       #   default: DB Master Username
       # DatabaseMasterPassword:
@@ -132,6 +132,9 @@ Conditions:
 Resources:
   DatabaseCluster:
     Type: AWS::RDS::DBCluster
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT15M
     Properties:
       BackupRetentionPeriod: 30
       DatabaseName: !Ref DatabaseName
@@ -139,8 +142,8 @@ Resources:
       Engine:
         !If [ UsePostgreSQL, aurora-postgresql, aurora-mysql ]
       DBClusterParameterGroupName:
-        !If [ UsePostgreSQL, default.aurora-postgresql13, default.aurora-mysql8.0 ]     
-      EngineVersion:  
+        !If [ UsePostgreSQL, default.aurora-postgresql13, default.aurora-mysql8.0 ]
+      EngineVersion:
         !If [ UsePostgreSQL, '13.8', '8.0.mysql_aurora.3.02.1' ]
       KmsKeyId:
         !If [ UseAWS-ManagedCMK, !Ref 'AWS::NoValue', !Ref DatabaseCmk ]
@@ -247,5 +250,5 @@ Outputs:
   DatabaseClusterEndpointPort:
     Value: !GetAtt DatabaseCluster.Endpoint.Port
   DatabaseClusterReadEndpointAddress:
-    Value: !GetAtt DatabaseCluster.ReadEndpoint.Address  
+    Value: !GetAtt DatabaseCluster.ReadEndpoint.Address
 
