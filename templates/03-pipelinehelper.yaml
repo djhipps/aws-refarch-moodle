@@ -181,6 +181,17 @@ Parameters:
     Description: Specifies the TGZ Moodle direct download URL
     Type: String
 
+Mappings:
+  InstanceTypeMap:
+    t4g: { UseGraviton2Ami: "true" }
+    c6g: { UseGraviton2Ami: "true" }
+    c7g: { UseGraviton2Ami: "true" }
+    m6g: { UseGraviton2Ami: "true" }
+    m7g: { UseGraviton2Ami: "true" }
+    r6g: { UseGraviton2Ami: "true" }
+    r7g: { UseGraviton2Ami: "true" }
+    other: { UseGraviton2Ami: "false" }
+
 Conditions:
   NumberOfSubnets1:
       !Equals [ 1, !Ref NumberOfSubnets ]
@@ -196,14 +207,8 @@ Conditions:
     - !Condition NumberOfSubnets2
     - !Condition NumberOfSubnets3
   Subnet2: !Condition NumberOfSubnets3
-  UsingGraviton2Ami:  !Or
-    - !Equals ["t4",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["c6",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["c7",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["m6",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["m7",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["r6",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["r7",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
+  UsingGraviton2Ami:
+    !Equals [!FindInMap [InstanceTypeMap, !Select [0, !Split [".", !Ref InstanceType]], UseGraviton2Ami], "true"]
 
 Resources:
 ########################### TODO put this in the codepipeline template

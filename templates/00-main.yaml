@@ -887,6 +887,8 @@ Resources:
           !Ref rdsInstanceSecret
         DomainName:
           !Ref DomainName
+        InstanceType:
+          !Ref WebInstanceType  
         MoodleLocale:
           !Ref MoodleLocale
         ProjectName:
