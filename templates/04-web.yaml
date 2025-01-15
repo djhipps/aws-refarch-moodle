@@ -164,18 +164,30 @@ Parameters:
     Description: Main stack name
     Type: String
 
+Mappings:
+  InstanceTypeMap:
+    t4g: { UseGraviton2Ami: "true" }
+    c6g: { UseGraviton2Ami: "true" }
+    c7g: { UseGraviton2Ami: "true" }
+    m6g: { UseGraviton2Ami: "true" }
+    m7g: { UseGraviton2Ami: "true" }
+    r6g: { UseGraviton2Ami: "true" }
+    r7g: { UseGraviton2Ami: "true" }
+    t3: { UseGraviton2Ami: "false" }
+    m5: { UseGraviton2Ami: "false" }
+    c5: { UseGraviton2Ami: "false" }
+    r5: { UseGraviton2Ami: "false" }
+    t3a: { UseGraviton2Ami: "false" }
+    m5a: { UseGraviton2Ami: "false" }
+    c5a: { UseGraviton2Ami: "false" }
+    r5a: { UseGraviton2Ami: "false" }
+
 Conditions:
   NumberOfSubnets1: !Equals [ 1, !Ref NumberOfSubnets ]
   NumberOfSubnets2: !Equals [ 2, !Ref NumberOfSubnets ]
   NumberOfSubnets3: !Equals [ 3, !Ref NumberOfSubnets ]
-  UsingGraviton2Ami:  !Or
-    - !Equals ["t4",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["c6",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["c7",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["m6",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["m7",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["r6",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
-    - !Equals ["r7",!Select [0, !Split [ "g.", !Ref WebInstanceType]]]
+  UsingGraviton2Ami:
+    !Equals [!FindInMap [InstanceTypeMap, !Select [0, !Split [".", !Ref WebInstanceType]], UseGraviton2Ami], "true"]
     
 Resources:
   WebInstanceProfile:
