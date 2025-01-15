@@ -142,7 +142,7 @@ Parameters:
   DeploymentLocation:
     Description: Templates location (S3 URL). By default, uses AWS provided templates.
     Type: String
-    Default: https://s3.eu-west-2.amazonaws.com/lsst.assets/templates/newrefrach
+    Default: https://s3.eu-west-2.amazonaws.com/lsst.assets/templates/wolfmat
   PublicAlbAcmCertificate:
     AllowedPattern: ^$|(arn:aws:acm:)([a-z0-9/:-])*([a-z0-9])$
     Description: '[ Optional ] The AWS Certification Manager certificate ARN for the ALB certificate - this certificate should be created in the region you wish to run the ALB and must reference the domain name you use below.'
@@ -158,7 +158,7 @@ Parameters:
     AllowedValues:
       - MySQL
       - PostgreSQL
-    Default: PostgreSQL
+    Default: MySQL
     Description: Indicates whether to use Aurora MySQL or PostgreSQL.
     Type: String
   DatabaseUseServerless:
@@ -193,7 +193,7 @@ Parameters:
       - 32
       - 64
       - 128
-    Default: 64
+    Default: 16
     Description: The maximum capacity for an Aurora DB cluster, starts with 0.5 and maximum up to 1
     Type: String
   DatabaseInstanceType:
@@ -232,7 +232,7 @@ Parameters:
       - db.r6gd.12xlarge
       - db.r6gd.16xlarge
     ConstraintDescription: Must be a valid Aurora RDS instance type.
-    Default: db.r6g.large
+    Default: db.t3.medium
     Description: Amazon RDS database instance type (only used if non-serverless)
     Type: String
   DatabaseMasterUsername:
@@ -242,12 +242,12 @@ Parameters:
     MaxLength: 16
     MinLength: 1
     Type: String
-    Default: moodle
+    Default: moodlewolf
   DatabaseName:
     AllowedPattern: ^([a-zA-Z0-9]*)$
     Description: Aurora RDS database name
     Type: String
-    Default: moodle
+    Default: moodlewolfmatdev
   SharedStorageEncryptionCmk:
     AllowedPattern: ^$|(arn:aws:kms:)([a-z0-9/:-])*([a-z0-9])$
     ConstraintDescription: Must be an existing ARN for an AWS KMS CMK.
@@ -258,7 +258,7 @@ Parameters:
     AllowedValues:
       - Redis
       - Memcached
-    Default: Memcached
+    Default: Redis
     Description: Indicates whether to use ElastiCache Memcached or Redis.
     Type: String
   UseSessionCacheBoolean:
@@ -272,7 +272,7 @@ Parameters:
     AllowedValues:
       - true
       - false
-    Default: true
+    Default: false
     Description: Set to true to deploy ElastiCache session cache using serverless approach. Set to false to use instances instead.
     Type: String
   SessionCacheNodeType:
@@ -330,14 +330,14 @@ Parameters:
       - cache.r6gd.12xlarge
       - cache.r6gd.16xlarge
     ConstraintDescription: Must be a valid Amazon ElastiCache node type.
-    Default: cache.r6g.large
+    Default: cache.t2.micro
     Description: The Amazon ElastiCache cluster node type.
     Type: String
   UseApplicationCacheBoolean:
     AllowedValues:
       - true
       - false
-    Default: false
+    Default: true
     Description: Specifies whether an ElastiCache Cache Cluster should be created to cache application content.
     Type: String
   UseServerlessApplicationCache:
@@ -402,7 +402,7 @@ Parameters:
       - cache.r6gd.12xlarge
       - cache.r6gd.16xlarge
     ConstraintDescription: Must be a valid Amazon ElastiCache node type.
-    Default: cache.r6g.large
+    Default: cache.t3.small
     Description: The Amazon ElastiCache cluster node type.
     Type: String
   WebAsgMax:
@@ -529,7 +529,7 @@ Parameters:
       - c7g.12xlarge
       - c7g.16xlarge
     ConstraintDescription: Must be a valid Amazon EC2 instance type.
-    Default: c7g.xlarge
+    Default: t4g.medium
     Description: The Amazon EC2 instance type for your web instances.
     Type: String
   HostedZoneName:
@@ -559,75 +559,75 @@ Parameters:
   VpcCidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.0.0/16
+    Default: 10.24.0.0/19
     Description: CIDR block for the VPC
     Type: String
   DataSubnet0Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.100.0/24
+    Default: 10.24.6.0/24
     Description: CIDR block for data subnet 0 located in Availability Zone 0
     Type: String
   DataSubnet1Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.101.0/24
+    Default: 10.24.7.0/24
     Description: CIDR block for data subnet 1 located in Availability Zone 1
     Type: String
   DataSubnet2Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.102.0/24
+    Default: 10.24.8.0/24
     Description: CIDR block for data subnet 2 located in Availability Zone 2
     Type: String
   PublicSubnet0Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.200.0/24
+    Default: 10.24.0.0/24
     Description: CIDR block for Public subnet 0 located in Availability Zone 0
     Type: String
   PublicSubnet1Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.201.0/24
+    Default: 10.24.1.0/24
     Description: CIDR block for Public subnet 1 located in Availability Zone 1
     Type: String
   PublicSubnet2Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.202.0/24
+    Default: 10.24.2.0/24
     Description: CIDR block for Public subnet 2 located in Availability Zone 2
     Type: String
   AppSubnet0Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.0.0/22
+    Default: 10.24.3.0/24
     Description: CIDR block for App Subnet 0 located in Availability Zone 0
     Type: String
   AppSubnet1Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.4.0/22
+    Default: 10.24.4.0/24
     Description: CIDR block for App Subnet 1 located in Availability Zone 1
     Type: String
   AppSubnet2Cidr:
     AllowedPattern: "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$"
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
-    Default: 10.0.8.0/22
+    Default: 10.24.5.0/24
     Description: CIDR block for App Subnet 2 located in Availability Zone 2
     Type: String
   UseCloudFrontBoolean:
     AllowedValues:
       - true
       - false
-    Default: false
+    Default: true
     Description: Specifies whether a CloudFront Distribution should be created to serve the Moodle website content.
     Type: String
   NotifyEmailAddress:
     AllowedPattern: ^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$
     Description: Email address for notification
     Type: String
-    Default: hello@yourdomain.com
+    Default: djhippisley+lsst@gmail.com
   MoodleDirectDownloadURL:
     Default: "https://download.moodle.org/download.php/direct/stable404/moodle-4.4.tgz"
     Description: Specifies the TGZ Moodle direct download URL
