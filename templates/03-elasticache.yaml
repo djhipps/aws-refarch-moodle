@@ -114,6 +114,7 @@ Resources:
       ReplicationGroupDescription: !Ref ElastiCacheClusterName
       AtRestEncryptionEnabled: true
       TransitEncryptionEnabled: true
+      TransitEncryptionMode: preferred
       AutoMinorVersionUpgrade: true
       MultiAZEnabled: true
       CacheNodeType: !Ref ElastiCacheNodeType
